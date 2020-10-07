@@ -1,0 +1,136 @@
+/**
+ *
+ * @author Ceyda Dereci
+ * @date October ?st 2020
+ */
+
+import java.util.Arrays;
+
+public class IntBag{
+   
+   //Properties
+   private int[] bag;
+   
+   //Constructor
+   public IntBag(){
+      int[] bag = new int[4];
+      
+   }
+   
+   
+   //Methods
+   
+   /*
+    * this method add the input value to the end of the array
+    * @param int value 
+    * @return int[]
+    */
+   public int[] add(int value){
+      boolean hasSpace = false;
+      for(int i = 0; i < bag.length ; i++){
+         if(bag[i] == 0){
+            bag[i] = value;
+            hasSpace = true;
+         }
+      }
+      if(hasSpace == false){
+         bag = Arrays.copyOf(bag, bag.length + 1);
+         bag[bag.length - 1] = value; 
+      }
+      return this.bag;
+   }
+   
+   /*
+    * this method add the input value at a particular index of the array
+    * if the array do not have room its size is doubled
+    * @param int value
+    * @param int particular index i
+    * @return 
+    */
+    public void addThisLoc(int value, int index){
+       boolean hasSpace = false;
+       for(int i = 0; i < bag.length ; i++){
+          if(bag[i] == 0)
+             hasSpace = true;
+       }
+       if(hasSpace == false){
+          bag = Arrays.copyOf(bag, bag.length * 2 -1);
+       }
+       this.bag[index] =  value;
+   }
+   
+   /*
+    * this method remove the value at given index
+    * the last value of the array will be placed at the given index
+    * @param int given index
+    * @return int[] 
+    */
+   public int[] remove(int index){
+      if(index < bag.length && index >= 0){
+         int[] anotherArray = new int[bag.length - 1]; 
+         for(int i = 0; i < index; i++)
+            anotherArray[i] = bag[i];
+         for(int k = index + 1; k < bag.length; k++)
+            anotherArray[k] = bag[k];
+         anotherArray[index] = bag[bag.length - 1];
+         return anotherArray;
+      }
+      else
+         return this.bag;
+     
+   }
+   
+   
+   /*
+    * this method checks that if array has the input value x
+    * @param int x 
+    * @return boolean true or false
+    */
+   public boolean containsX(int x){
+      boolean found;
+      found = false;
+      for(int i = 0; i < bag.length; i++){
+         if(bag[i] == x)
+            found = true; 
+      }
+      return found;
+   }
+   
+   /*
+    * @return string representation of the array
+    */
+   public String toString(){
+      String text = "";
+      for(int i = 0; i < bag.length; i++)
+         text += bag[i];
+      return text;
+   }
+   /*
+    * @return size of the array
+    */
+    public int size(){
+      return this.bag.length;
+   }
+    
+   /*
+    * @param int location desired
+    * @return int the value for the specific location
+    */
+   public int getValue(int location){
+      return this.bag[location];
+   }
+   
+   /*
+    * removeAll 
+    * @param int value
+    * @return 
+    */
+     public void removeAll(int value){
+        for(int i = 0; i < bag.length ; i++){
+           if(bag[i] == value){
+              this.remove(i);
+           }
+        }
+     }
+   
+}

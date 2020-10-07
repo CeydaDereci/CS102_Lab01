@@ -1,0 +1,62 @@
+/**
+ *
+ * @author Ceyda Dereci
+ * @date October ?st 2020
+ */
+import java.util.Scanner;
+public class IntBagTest{
+   public static void main(String[] args){
+   
+      Scanner scan = new Scanner(System.in);
+      IntBag intBag = new IntBag();
+      int option;
+      
+      
+      do{
+         System.out.print("1-Create\n2-Read\n3-Print\n4-Add\n5-Remove\n6-Remove all\n7-Quit\n");
+         option = scan.nextInt();          
+         if(option == 1){
+            intBag = new IntBag();
+         }
+         
+         else if(option == 2){
+            int value;
+            System.out.println("Enter the list of values: ");
+            value = scan.nextInt();
+            while(value != 0)
+               intBag.add(value);
+               value = scan.nextInt();      
+         }
+         
+         else if(option == 3){
+            System.out.println(intBag.toString());
+         }
+         
+         else if(option == 4){
+            int index;
+            int value;
+            System.out.println("Enter a value to add: ");
+            value = scan.nextInt();
+            System.out.println("Enter a specified location to add the value at: ");
+            index = scan.nextInt();
+            intBag.addThisLoc(value, index);
+         }
+         
+         else if(option == 5){
+            int index;
+            System.out.println("Enter a specified location to remove the value at: ");
+            index = scan.nextInt();
+            intBag.remove(index);
+         }
+         
+         else if(option == 6){
+            int value;
+            System.out.println("Enter a value to remove: ");
+            value = scan.nextInt();
+            intBag.removeAll(value);
+         }
+      }
+      
+      while(option != 7);
+   }
+}
